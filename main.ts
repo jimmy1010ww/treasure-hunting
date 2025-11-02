@@ -1,6 +1,9 @@
 let 寶藏座標: Position[] = []
 let position: Position = null
 let flag = false
+player.onChat("detect", function () {
+    偵測寶藏大賽方塊(寶藏座標)
+})
 player.onChat("run", function () {
     寶藏搜尋大賽(5)
 })
@@ -23,20 +26,25 @@ function 寶藏搜尋大賽 (treasure_num: number) {
     }
     偵測寶藏大賽方塊(寶藏座標)
 }
-function 偵測寶藏大賽方塊 (treasure_pos_list: any[]) {
+function 偵測寶藏大賽方塊 (treasure_pos_list: Position[]) {
     flag = true
     while (flag) {
         flag = false
-        for (let index = 0; index <= treasure_pos_list.length; index++) {
-            if (!(blocks.testForBlock(IRON_BLOCK, treasure_pos_list[index]))) {
-                player.execute(
-                "/scoreboard players set " + "\"§a" + treasure_pos_list[index] + "\"" + "\"找尋寶藏\" 0"
-                )
-            } else {
+        for (let index = 0; index <= treasure_pos_list.length - 1; index++) {
+            if (blocks.testForBlock(IRON_BLOCK, treasure_pos_list[index])) {
                 player.execute(
                 "/scoreboard players set " + "\"§a" + treasure_pos_list[index] + "\"" + "\"找尋寶藏\" 1"
                 )
                 flag = true
+            } else {
+                player.execute(
+                "/scoreboard players set " + "\"§a" + treasure_pos_list[index] + "\"" + "\"找尋寶藏\" 0"
+                )
+                gameplay.title(mobs.target(ALL_PLAYERS), "寶藏被挖掉拉!", "玩家: " + mobs.near(
+                mobs.target(NEAREST_PLAYER),
+                treasure_pos_list[index],
+                3
+                ) + "拿到寶藏了!")
             }
         }
     }
