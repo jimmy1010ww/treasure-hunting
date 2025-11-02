@@ -18,7 +18,7 @@ function 寶藏搜尋大賽 (treasure_num: number) {
         寶藏座標.push(position)
         blocks.place(IRON_BLOCK, position)
         player.execute(
-        "/scoreboard players add " + "\"§a" + position + "\"" + " \"§6找尋寶藏\" 1"
+        "/scoreboard players set " + "\"§a" + position + "\"" + " \"找尋寶藏\" 1"
         )
     }
     偵測寶藏大賽方塊(寶藏座標)
@@ -30,11 +30,11 @@ function 偵測寶藏大賽方塊 (treasure_pos_list: any[]) {
         for (let index = 0; index <= treasure_pos_list.length; index++) {
             if (!(blocks.testForBlock(IRON_BLOCK, treasure_pos_list[index]))) {
                 player.execute(
-                "/scoreboard players set " + "\"" + treasure_pos_list[index] + "\"" + "\"§6找尋寶藏\" 0"
+                "/scoreboard players set " + "\"§a" + treasure_pos_list[index] + "\"" + "\"找尋寶藏\" 0"
                 )
             } else {
                 player.execute(
-                "/scoreboard players set " + "\"" + treasure_pos_list[index] + "\"" + "\"§6找尋寶藏\" 1"
+                "/scoreboard players set " + "\"§a" + treasure_pos_list[index] + "\"" + "\"找尋寶藏\" 1"
                 )
                 flag = true
             }
