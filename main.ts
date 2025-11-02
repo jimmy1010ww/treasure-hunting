@@ -49,4 +49,5 @@ function 偵測寶藏大賽方塊 (treasure_pos_list: any[]) {
             }
         }
     }
+    gameplay.title(mobs.target(ALL_PLAYERS), "§寶藏全部都被找到了", "遊戲結束")
 }
