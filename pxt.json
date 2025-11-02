@@ -1,5 +1,6 @@
 {
     "name": "寶藏大賽",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
